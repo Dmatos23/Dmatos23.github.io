@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla de 102 Etiquetas HTML</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f9f9f9; color: #333; }
+        h1 { text-align: center; color: #222; }
+        table { width: 100%; border-collapse: collapse; margin: 20px auto; font-size: 14px; }
+        th, td { border: 1px solid #999; padding: 8px; text-align: left; vertical-align: top; }
+        th { background-color: #444; color: #fff; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+        code { background: #eee; padding: 2px 4px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Tabla de 102 Etiquetas HTML</h1>
+    <table>
+        <tr>
+            <th>Nº</th>
+            <th>Etiqueta</th>
+            <th>Descripción</th>
+            <th>Ejemplo de uso</th>
+            <th>Nota adicional</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><code>&lt;!DOCTYPE&gt;</code></td>
+            <td>Define el tipo de documento HTML.</td>
+            <td><code>&lt;!DOCTYPE html&gt;</code></td>
+            <td>En HTML5 siempre se escribe así.</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><code>&lt;html&gt;</code></td>
+            <td>Elemento raíz de la página.</td>
+            <td><code>&lt;html lang='es'&gt;...&lt;/html&gt;</code></td>
+            <td>Usa lang para accesibilidad.</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td><code>&lt;head&gt;</code></td>
+            <td>Contiene metadatos y enlaces.</td>
+            <td><code>&lt;head&gt;...&lt;/head&gt;</code></td>
+            <td>No se muestra en la página.</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td><code>&lt;title&gt;</code></td>
+            <td>Título en la pestaña del navegador.</td>
+            <td><code>&lt;title&gt;DMStore&lt;/title&gt;</code></td>
+            <td>Importante para SEO.</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td><code>&lt;meta&gt;</code></td>
+            <td>Define metadatos (charset, viewport).</td>
+            <td><code>&lt;meta charset='UTF-8'&gt;</code></td>
+            <td>Usado en SEO y responsive.</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td><code>&lt;link&gt;</code></td>
+            <td>Conecta recursos externos.</td>
+            <td><code>&lt;link rel='stylesheet' href='estilos.css'&gt;</code></td>
+            <td>Usado para CSS y favicon.</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td><code>&lt;style&gt;</code></td>
+            <td>CSS interno.</td>
+            <td><code>&lt;style&gt;body{color:yellow;}&lt;/style&gt;</code></td>
+            <td>Evita abusar de él.</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td><code>&lt;script&gt;</code></td>
+            <td>Código JavaScript.</td>
+            <td><code>&lt;script&gt;alert('Bienvenido a DMStore')&lt;/script&gt;</code></td>
+            <td>Usa defer para carga optimizada.</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td><code>&lt;body&gt;</code></td>
+            <td>Contenido visible.</td>
+            <td><code>&lt;body&gt;...&lt;/body&gt;</code></td>
+            <td>Solo un &lt;body&gt; por página.</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td><code>&lt;h1&gt;–&lt;h6&gt;</code></td>
+            <td>Encabezados jerárquicos.</td>
+            <td><code>&lt;h1&gt;Catálogo de Tecnología&lt;/h1&gt;</code></td>
+            <td>&lt;h1&gt; es el más importante.</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td><code>&lt;p&gt;</code></td>
+            <td>Párrafo.</td>
+            <td><code>&lt;p&gt;Encuentra lo mejor en laptops&lt;/p&gt;</code></td>
+            <td>Bloque de texto básico.</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td><code>&lt;br&gt;</code></td>
+            <td>Salto de línea.</td>
+            <td><code>Laptop Dell&lt;br&gt;Core i7</code></td>
+            <td>No tiene cierre.</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td><code>&lt;hr&gt;</code></td>
+            <td>Línea divisoria.</td>
+            <td><code>&lt;hr&gt;</code></td>
+            <td>Autocerrado.</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td><code>&lt;a&gt;</code></td>
+            <td>Enlace.</td>
+            <td><code>&lt;a href='https://dmstore.com'&gt;Ir a DMStore&lt;/a&gt;</code></td>
+            <td>Usa target='_blank'.</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td><code>&lt;img&gt;</code></td>
+            <td>Imagen.</td>
+            <td><code>&lt;img src='logo.png' alt='Logo DMStore'&gt;</code></td>
+            <td>Siempre usar alt.</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td><code>&lt;div&gt;</code></td>
+            <td>Contenedor genérico.</td>
+            <td><code>&lt;div class='producto'&gt;&lt;/div&gt;</code></td>
+            <td>Muy usado en layouts.</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td><code>&lt;span&gt;</code></td>
+            <td>Contenedor en línea.</td>
+            <td><code>&lt;span class='oferta'&gt;50% OFF&lt;/span&gt;</code></td>
+            <td>Para resaltar o aplicar estilos.</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td><code>&lt;header&gt;</code></td>
+            <td>Cabecera de la página.</td>
+            <td><code>&lt;header&gt;&lt;h1&gt;DMStore&lt;/h1&gt;&lt;/header&gt;</code></td>
+            <td>HTML5 semántico.</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td><code>&lt;footer&gt;</code></td>
+            <td>Pie de página.</td>
+            <td><code>&lt;footer&gt;Contacto: soporte@dmstore.com&lt;/footer&gt;</code></td>
+            <td>Incluye info de contacto.</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td><code>&lt;main&gt;</code></td>
+            <td>Contenido principal.</td>
+            <td><code>&lt;main&gt;Productos destacados&lt;/main&gt;</code></td>
+            <td>Solo uno por documento.</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td><code>&lt;section&gt;</code></td>
+            <td>Sección temática.</td>
+            <td><code>&lt;section&gt;&lt;h2&gt;Noticias de Tecnología&lt;/h2&gt;&lt;/section&gt;</code></td>
+            <td>Útil para dividir contenido.</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td><code>&lt;article&gt;</code></td>
+            <td>Contenido independiente.</td>
+            <td><code>&lt;article&gt;&lt;h2&gt;Nuevo Smartphone&lt;/h2&gt;&lt;/article&gt;</code></td>
+            <td>Ideal para blogs.</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td><code>&lt;aside&gt;</code></td>
+            <td>Contenido lateral.</td>
+            <td><code>&lt;aside&gt;Publicidad de laptops&lt;/aside&gt;</code></td>
+            <td>Info complementaria.</td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td><code>&lt;nav&gt;</code></td>
+            <td>Menú de navegación.</td>
+            <td><code>&lt;nav&gt;&lt;a href='#'&gt;Inicio&lt;/a&gt;&lt;/nav&gt;</code></td>
+            <td>Para menús.</td>
+        </tr>
+        <tr>
+            <td>25</td>
+            <td><code>&lt;figure&gt;</code></td>
+            <td>Contenedor de imagen + leyenda.</td>
+            <td><code>&lt;figure&gt;&lt;img src='pc.png' alt='PC'&gt;&lt;figcaption&gt;Computadora Gamer&lt;/figcaption&gt;&lt;/figure&gt;</code></td>
+            <td>Mejora accesibilidad.</td>
+        </tr>
+        <tr>
+            <td>26</td>
+            <td><code>&lt;figcaption&gt;</code></td>
+            <td>Leyenda de &lt;figure&gt;.</td>
+            <td><code>&lt;figcaption&gt;Imagen representativa&lt;/figcaption&gt;</code></td>
+            <td>Opcional.</td>
+        </tr>
+        <tr>
+            <td>27</td>
+            <td><code>&lt;strong&gt;</code></td>
+            <td>Texto importante.</td>
+            <td><code>&lt;strong&gt;Oferta limitada&lt;/strong&gt;</code></td>
+            <td>Da énfasis.</td>
+        </tr>
+        <tr>
+            <td>28</td>
+            <td><code>&lt;em&gt;</code></td>
+            <td>Texto enfatizado.</td>
+            <td><code>&lt;em&gt;Nuevo modelo&lt;/em&gt;</code></td>
+            <td>Se muestra en cursiva.</td>
+        </tr>
+        <tr>
+            <td>29</td>
+            <td><code>&lt;mark&gt;</code></td>
+            <td>Texto resaltado.</td>
+            <td><code>&lt;mark&gt;Descuento especial&lt;/mark&gt;</code></td>
+            <td>Resaltado visual.</td>
+        </tr>
+        <tr>
+            <td>30</td>
+            <td><code>&lt;small&gt;</code></td>
+            <td>Texto más pequeño.</td>
+            <td><code>&lt;small&gt;Aplican condiciones&lt;/small&gt;</code></td>
+            <td>Para disclaimers.</td>
+        </tr>
+        <tr>
+            <td>31</td>
+            <td><code>&lt;abbr&gt;</code></td>
+            <td>Abreviatura.</td>
+            <td><code>&lt;abbr title='Internet of Things'&gt;IoT&lt;/abbr&gt;</code></td>
+            <td>Usa title.</td>
+        </tr>
+        <tr>
+            <td>32</td>
+            <td><code>&lt;cite&gt;</code></td>
+            <td>Cita de una obra.</td>
+            <td><code>&lt;cite&gt;El Arte de Programar&lt;/cite&gt;</code></td>
+            <td>No confundir con &lt;blockquote&gt;.</td>
+        </tr>
+        <tr>
+            <td>33</td>
+            <td><code>&lt;blockquote&gt;</code></td>
+            <td>Cita en bloque.</td>
+            <td><code>&lt;blockquote&gt;La tecnología nos conecta&lt;/blockquote&gt;</code></td>
+            <td>Usado en artículos.</td>
+        </tr>
+        <tr>
+            <td>34</td>
+            <td><code>&lt;q&gt;</code></td>
+            <td>Cita corta.</td>
+            <td><code>&lt;q&gt;Innovación&lt;/q&gt;</code></td>
+            <td>Aplica comillas.</td>
+        </tr>
+        <tr>
+            <td>35</td>
+            <td><code>&lt;code&gt;</code></td>
+            <td>Fragmento de código.</td>
+            <td><code>&lt;code&gt;console.log('Hola')&lt;/code&gt;</code></td>
+            <td>Se muestra monoespaciado.</td>
+        </tr>
+        <tr>
+            <td>36</td>
+            <td><code>&lt;pre&gt;</code></td>
+            <td>Texto preformateado.</td>
+            <td><code>&lt;pre&gt;function test() {}&lt;/pre&gt;</code></td>
+            <td>Respeta espacios y saltos.</td>
+        </tr>
+        <tr>
+            <td>37</td>
+            <td><code>&lt;kbd&gt;</code></td>
+            <td>Entrada de teclado.</td>
+            <td><code>&lt;kbd&gt;Ctrl&lt;/kbd&gt;+&lt;kbd&gt;C&lt;/kbd&gt;</code></td>
+            <td>Útil en tutoriales.</td>
+        </tr>
+        <tr>
+            <td>38</td>
+            <td><code>&lt;samp&gt;</code></td>
+            <td>Muestra salida de programa.</td>
+            <td><code>&lt;samp&gt;Error 404&lt;/samp&gt;</code></td>
+            <td>Monoespaciado.</td>
+        </tr>
+        <tr>
+            <td>39</td>
+            <td><code>&lt;var&gt;</code></td>
+            <td>Variable matemática.</td>
+            <td><code>&lt;var&gt;x&lt;/var&gt;=10</code></td>
+            <td>Italic por defecto.</td>
+        </tr>
+        <tr>
+            <td>40</td>
+            <td><code>&lt;ul&gt;</code></td>
+            <td>Lista desordenada.</td>
+            <td><code>&lt;ul&gt;&lt;li&gt;Laptop&lt;/li&gt;&lt;/ul&gt;</code></td>
+            <td>Usa viñetas.</td>
+        </tr>
+        <tr>
+            <td>41</td>
+            <td><code>&lt;ol&gt;</code></td>
+            <td>Lista ordenada.</td>
+            <td><code>&lt;ol&gt;&lt;li&gt;Monitor&lt;/li&gt;&lt;/ol&gt;</code></td>
+            <td>Numerada.</td>
+        </tr>
+        <tr>
+            <td>42</td>
+            <td><code>&lt;li&gt;</code></td>
+            <td>Elemento de lista.</td>
+            <td><code>&lt;li&gt;Tablet&lt;/li&gt;</code></td>
+            <td>Dentro de &lt;ul&gt; o &lt;ol&gt;.</td>
+        </tr>
+        <tr>
+            <td>43</td>
+            <td><code>&lt;dl&gt;</code></td>
+            <td>Lista de definiciones.</td>
+            <td><code>&lt;dl&gt;&lt;dt&gt;HTML&lt;/dt&gt;&lt;dd&gt;Lenguaje&lt;/dd&gt;&lt;/dl&gt;</code></td>
+            <td>Para glosarios.</td>
+        </tr>
+        <tr>
+            <td>44</td>
+            <td><code>&lt;dt&gt;</code></td>
+            <td>Término en lista de definiciones.</td>
+            <td><code>&lt;dt&gt;API&lt;/dt&gt;</code></td>
+            <td>Usado con &lt;dd&gt;.</td>
+        </tr>
+        <tr>
+            <td>45</td>
+            <td><code>&lt;dd&gt;</code></td>
+            <td>Definición en lista.</td>
+            <td><code>&lt;dd&gt;Interfaz de programación&lt;/dd&gt;</code></td>
+            <td>Va con &lt;dt&gt;.</td>
+        </tr>
+        <tr>
+        <td>46</td>
+        <td><code>&lt;table&gt;</code></td>
+        <td>Crea una tabla.</td>
+        <td><code>&lt;table&gt;...&lt;/table&gt;</code></td>
+        <td>Define la estructura principal.</td>
+    </tr>
+    <tr>
+        <td>47</td>
+        <td><code>&lt;thead&gt;</code></td>
+        <td>Define el encabezado de una tabla.</td>
+        <td><code>&lt;thead&gt;...&lt;/thead&gt;</code></td>
+        <td>Contiene celdas <code>&lt;th&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td>48</td>
+        <td><code>&lt;tbody&gt;</code></td>
+        <td>Define el cuerpo de una tabla.</td>
+        <td><code>&lt;tbody&gt;...&lt;/tbody&gt;</code></td>
+        <td>Contiene el contenido principal.</td>
+    </tr>
+    <tr>
+        <td>49</td>
+        <td><code>&lt;tfoot&gt;</code></td>
+        <td>Define el pie de una tabla.</td>
+        <td><code>&lt;tfoot&gt;...&lt;/tfoot&gt;</code></td>
+        <td>Útil para totales o resúmenes.</td>
+    </tr>
+    <tr>
+        <td>50</td>
+        <td><code>&lt;tr&gt;</code></td>
+        <td>Define una fila en una tabla.</td>
+        <td><code>&lt;tr&gt;&lt;td&gt;Celda&lt;/td&gt;&lt;/tr&gt;</code></td>
+        <td>Contiene celdas.</td>
+    </tr>
+    <tr>
+        <td>51</td>
+        <td><code>&lt;td&gt;</code></td>
+        <td>Define una celda de datos.</td>
+        <td><code>&lt;td&gt;Valor&lt;/td&gt;</code></td>
+        <td>Contenido de una fila.</td>
+    </tr>
+    <tr>
+        <td>52</td>
+        <td><code>&lt;th&gt;</code></td>
+        <td>Celda de encabezado.</td>
+        <td><code>&lt;th&gt;Título&lt;/th&gt;</code></td>
+        <td>Texto en negrita por defecto.</td>
+    </tr>
+    <tr>
+        <td>53</td>
+        <td><code>&lt;form&gt;</code></td>
+        <td>Define un formulario.</td>
+        <td><code>&lt;form action='/enviar'&gt;...&lt;/form&gt;</code></td>
+        <td>Contenedor para campos de entrada.</td>
+    </tr>
+    <tr>
+        <td>54</td>
+        <td><code>&lt;input&gt;</code></td>
+        <td>Campo de entrada de usuario.</td>
+        <td><code>&lt;input type='text' name='usuario'&gt;</code></td>
+        <td>Tiene muchos tipos (text, password, submit).</td>
+    </tr>
+    <tr>
+        <td>55</td>
+        <td><code>&lt;textarea&gt;</code></td>
+        <td>Área de texto de múltiples líneas.</td>
+        <td><code>&lt;textarea&gt;Comentarios&lt;/textarea&gt;</code></td>
+        <td>Útil para mensajes largos.</td>
+    </tr>
+    <tr>
+        <td>56</td>
+        <td><code>&lt;button&gt;</code></td>
+        <td>Botón interactivo.</td>
+        <td><code>&lt;button type='submit'&gt;Enviar&lt;/button&gt;</code></td>
+        <td>Puede contener texto o imágenes.</td>
+    </tr>
+    <tr>
+        <td>57</td>
+        <td><code>&lt;label&gt;</code></td>
+        <td>Etiqueta para un control de formulario.</td>
+        <td><code>&lt;label for='usuario'&gt;Usuario:&lt;/label&gt;</code></td>
+        <td>Mejora la accesibilidad.</td>
+    </tr>
+    <tr>
+        <td>58</td>
+        <td><code>&lt;select&gt;</code></td>
+        <td>Lista desplegable de opciones.</td>
+        <td><code>&lt;select&gt;&lt;option&gt;...&lt;/option&gt;&lt;/select&gt;</code></td>
+        <td>Se usa con <code>&lt;option&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td>59</td>
+        <td><code>&lt;option&gt;</code></td>
+        <td>Opción dentro de una lista.</td>
+        <td><code>&lt;option value='1'&gt;Opción 1&lt;/option&gt;</code></td>
+        <td>Dentro de <code>&lt;select&gt;</code> o <code>&lt;datalist&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td>60</td>
+        <td><code>&lt;optgroup&gt;</code></td>
+        <td>Grupo de opciones en una lista.</td>
+        <td><code>&lt;optgroup label='Smartphones'&gt;...&lt;/optgroup&gt;</code></td>
+        <td>Agrupa opciones relacionadas.</td>
+    </tr>
+    <tr>
+        <td>61</td>
+        <td><code>&lt;fieldset&gt;</code></td>
+        <td>Agrupa controles de un formulario.</td>
+        <td><code>&lt;fieldset&gt;&lt;legend&gt;Contacto&lt;/legend&gt;...&lt;/fieldset&gt;</code></td>
+        <td>Dibuja un borde alrededor.</td>
+    </tr>
+    <tr>
+        <td>62</td>
+        <td><code>&lt;legend&gt;</code></td>
+        <td>Leyenda para un <code>&lt;fieldset&gt;</code>.</td>
+        <td><code>&lt;legend&gt;Datos de envío&lt;/legend&gt;</code></td>
+        <td>Es el título del grupo.</td>
+    </tr>
+    <tr>
+        <td>63</td>
+        <td><code>&lt;datalist&gt;</code></td>
+        <td>Lista de opciones para un <code>&lt;input&gt;</code>.</td>
+        <td><code>&lt;datalist id='productos'&gt;...&lt;/datalist&gt;</code></td>
+        <td>Sugiere opciones al escribir.</td>
+    </tr>
+    <tr>
+        <td>64</td>
+        <td><code>&lt;output&gt;</code></td>
+        <td>Resultado de un cálculo.</td>
+        <td><code>&lt;output name='resultado'&gt;0&lt;/output&gt;</code></td>
+        <td>Usado en formularios dinámicos.</td>
+    </tr>
+    <tr>
+        <td>65</td>
+        <td><code>&lt;audio&gt;</code></td>
+        <td>Contenido de audio.</td>
+        <td><code>&lt;audio controls src='musica.mp3'&gt;&lt;/audio&gt;</code></td>
+        <td>Soporta formatos como mp3 y wav.</td>
+    </tr>
+    <tr>
+        <td>66</td>
+        <td><code>&lt;video&gt;</code></td>
+        <td>Contenido de video.</td>
+        <td><code>&lt;video controls src='video.mp4'&gt;&lt;/video&gt;</code></td>
+        <td>Soporta mp4, webm, ogv.</td>
+    </tr>
+    <tr>
+        <td>67</td>
+        <td><code>&lt;source&gt;</code></td>
+        <td>Múltiples fuentes para audio/video.</td>
+        <td><code>&lt;source src='video.webm' type='video/webm'&gt;</code></td>
+        <td>Permite compatibilidad con navegadores.</td>
+    </tr>
+    <tr>
+        <td>68</td>
+            <td><code>&lt;track&gt;</code></td>
+            <td>Pistas de texto para video (subtítulos).</td>
+            <td><code>&lt;track src='subtitulos.vtt' kind='subtitles'&gt;</code></td>
+            <td>Mejora la accesibilidad.</td>
+    </tr>
+    <tr>
+        <td>69</td>
+        <td><code>&lt;iframe&gt;</code></td>
+        <td>Marco en línea para otro documento HTML.</td>
+        <td><code>&lt;iframe src='https://ejemplo.com'&gt;&lt;/iframe&gt;</code></td>
+        <td>Usado para incrustar contenido externo.</td>
+    </tr>
+    <tr>
+        <td>70</td>
+        <td><code>&lt;embed&gt;</code></td>
+        <td>Contenedor para contenido externo.</td>
+        <td><code>&lt;embed type='video/quicktime' src='video.mov'&gt;</code></td>
+        <td>Para incrustar contenido de plugins.</td>
+    </tr>
+    <tr>
+        <td>71</td>
+        <td><code>&lt;canvas&gt;</code></td>
+        <td>Gráficos 2D y animaciones.</td>
+        <td><code>&lt;canvas id='miCanvas'&gt;&lt;/canvas&gt;</code></td>
+        <td>Requiere JavaScript para dibujar.</td>
+    </tr>
+    <tr>
+        <td>72</td>
+        <td><code>&lt;picture&gt;</code></td>
+        <td>Múltiples fuentes de imagen responsiva.</td>
+        <td><code>&lt;picture&gt;&lt;source srcset='...'&gt;&lt;img src='...'&gt;&lt;/picture&gt;</code></td>
+        <td>Controla la carga de imágenes.</td>
+    </tr>
+    <tr>
+        <td>73</td>
+        <td><code>&lt;svg&gt;</code></td>
+        <td>Gráficos vectoriales escalables.</td>
+        <td><code>&lt;svg width='100' height='100'&gt;...&lt;/svg&gt;</code></td>
+        <td>Imágenes que no pierden calidad al escalar.</td>
+    </tr>
+    <tr>
+        <td>74</td>
+        <td><code>&lt;map&gt;</code></td>
+        <td>Mapa de imagen.</td>
+        <td><code>&lt;map name='workmap'&gt;...&lt;/map&gt;</code></td>
+        <td>Permite enlaces en áreas de una imagen.</td>
+    </tr>
+    <tr>
+        <td>75</td>
+        <td><code>&lt;area&gt;</code></td>
+        <td>Área clickeable en un mapa de imagen.</td>
+        <td><code>&lt;area shape='circle' coords='...' href='...'&gt;</code></td>
+        <td>Usado dentro de <code>&lt;map&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td>76</td>
+        <td><code>&lt;b&gt;</code></td>
+        <td>Texto en negrita.</td>
+        <td><code>&lt;b&gt;Producto Nuevo&lt;/b&gt;</code></td>
+        <td>Estilo sin importancia semántica.</td>
+    </tr>
+    <tr>
+        <td>77</td>
+        <td><code>&lt;i&gt;</code></td>
+        <td>Texto en cursiva.</td>
+        <td><code>&lt;i&gt;Término técnico&lt;/i&gt;</code></td>
+        <td>Estilo sin importancia semántica.</td>
+    </tr>
+    <tr>
+        <td>78</td>
+        <td><code>&lt;u&gt;</code></td>
+        <td>Texto subrayado.</td>
+        <td><code>&lt;u&gt;Más información&lt;/u&gt;</code></td>
+        <td>Generalmente evitado en enlaces.</td>
+    </tr>
+    <tr>
+        <td>79</td>
+        <td><code>&lt;s&gt;</code></td>
+        <td>Texto tachado.</td>
+        <td><code>Precio: &lt;s&gt;$100&lt;/s&gt; $75</code></td>
+        <td>Indica que ya no es relevante.</td>
+    </tr>
+    <tr>
+        <td>80</td>
+        <td><code>&lt;sub&gt;</code></td>
+        <td>Texto subíndice.</td>
+        <td><code>H&lt;sub&gt;2&lt;/sub&gt;O</code></td>
+        <td>Usado en fórmulas químicas.</td>
+    </tr>
+    <tr>
+        <td>81</td>
+        <td><code>&lt;sup&gt;</code></td>
+        <td>Texto superíndice.</td>
+        <td><code>2&lt;sup&gt;2&lt;/sup&gt;=4</code></td>
+        <td>Usado en potencias o notas.</td>
+    </tr>
+    <tr>
+        <td>82</td>
+        <td><code>&lt;del&gt;</code></td>
+        <td>Texto eliminado.</td>
+        <td><code>&lt;del&gt;Producto agotado&lt;/del&gt;</code></td>
+        <td>Indica que el texto fue borrado.</td>
+    </tr>
+    <tr>
+        <td>83</td>
+        <td><code>&lt;ins&gt;</code></td>
+        <td>Texto insertado.</td>
+        <td><code>Producto ahora &lt;ins&gt;en stock&lt;/ins&gt;</code></td>
+        <td>Texto agregado a un documento.</td>
+    </tr>
+    <tr>
+        <td>84</td>
+        <td><code>&lt;dfn&gt;</code></td>
+        <td>Término de una definición.</td>
+        <td><code>&lt;dfn&gt;API&lt;/dfn&gt;</code></td>
+        <td>Usado en glosarios.</td>
+    </tr>
+    <tr>
+        <td>85</td>
+        <td><code>&lt;address&gt;</code></td>
+        <td>Información de contacto del autor.</td>
+        <td><code>&lt;address&gt;...&lt;/address&gt;</code></td>
+        <td>Útil para datos de contacto y SEO.</td>
+    </tr>
+    <tr>
+        <td>86</td>
+        <td><code>&lt;time&gt;</code></td>
+        <td>Fecha u hora.</td>
+        <td><code>Publicado el &lt;time datetime='2024-05-15'&gt;15 de mayo&lt;/time&gt;</code></td>
+        <td>Formato legible por máquinas.</td>
+    </tr>
+    <tr>
+        <td>87</td>
+        <td><code>&lt;details&gt;</code></td>
+        <td>Widget de divulgación.</td>
+        <td><code>&lt;details&gt;&lt;summary&gt;Ver más&lt;/summary&gt;...&lt;/details&gt;</code></td>
+        <td>Contenido que puede mostrarse u ocultarse.</td>
+    </tr>
+    <tr>
+        <td>88</td>
+        <td><code>&lt;summary&gt;</code></td>
+        <td>Título de un <code>&lt;details&gt;</code>.</td>
+        <td><code>&lt;summary&gt;Detalles técnicos&lt;/summary&gt;</code></td>
+        <td>Siempre debe ser el primer hijo de <code>&lt;details&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td>89</td>
+        <td><code>&lt;dialog&gt;</code></td>
+        <td>Cuadro de diálogo o ventana emergente.</td>
+        <td><code>&lt;dialog open&gt;...&lt;/dialog&gt;</code></td>
+        <td>Usado para modales.</td>
+    </tr>
+    <tr>
+        <td>90</td>
+        <td><code>&lt;progress&gt;</code></td>
+        <td>Barra de progreso de una tarea.</td>
+        <td><code>&lt;progress value='70' max='100'&gt;&lt;/progress&gt;</code></td>
+        <td>Se usa para indicar el progreso.</td>
+    </tr>
+    <tr>
+        <td>91</td>
+        <td><code>&lt;meter&gt;</code></td>
+        <td>Medidor escalar (ej. nivel de batería).</td>
+        <td><code>&lt;meter value='0.8'&gt;80%&lt;/meter&gt;</code></td>
+        <td>Mide un valor dentro de un rango.</td>
+    </tr>
+    <tr>
+        <td>92</td>
+        <td><code>&lt;bdi&gt;</code></td>
+        <td>Texto que puede ir en cualquier dirección.</td>
+        <td><code>&lt;bdi&gt;اسم المنتج&lt;/bdi&gt;</code></td>
+        <td>Útil para idiomas como el árabe.</td>
+    </tr>
+    <tr>
+        <td>93</td>
+        <td><code>&lt;bdo&gt;</code></td>
+        <td>Anula la dirección del texto.</td>
+        <td><code>&lt;bdo dir='rtl'&gt;Texto&lt;/bdo&gt;</code></td>
+        <td>Útil para efectos especiales.</td>
+    </tr>
+    <tr>
+        <td>94</td>
+        <td><code>&lt;wbr&gt;</code></td>
+        <td>Salto de línea opcional.</td>
+        <td><code>supercalifragilistic&lt;wbr&gt;expialidocious</code></td>
+        <td>Evita que una palabra larga rompa el diseño.</td>
+    </tr>
+    <tr>
+        <td>95</td>
+        <td><code>&lt;ruby&gt;</code></td>
+        <td>Anotación para caracteres asiáticos.</td>
+        <td><code>&lt;ruby&gt;漢字&lt;rt&gt;kanji&lt;/rt&gt;&lt;/ruby&gt;</code></td>
+        <td>Usado con <code>&lt;rt&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td>96</td>
+        <td><code>&lt;rt&gt;</code></td>
+        <td>Texto de anotación para <code>&lt;ruby&gt;</code>.</td>
+        <td><code>&lt;rt&gt;pinyin&lt;/rt&gt;</code></td>
+        <td>Proporciona la pronunciación.</td>
+    </tr>
+    <tr>
+        <td>97</td>
+        <td><code>&lt;rp&gt;</code></td>
+        <td>Paréntesis de reserva para <code>&lt;ruby&gt;</code>.</td>
+        <td><code>&lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;...&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;</code></td>
+        <td>Muestra paréntesis si el navegador no soporta ruby.</td>
+    </tr>
+    <tr>
+        <td>98</td>
+        <td><code>&lt;noscript&gt;</code></td>
+        <td>Contenido si JavaScript está deshabilitado.</td>
+        <td><code>&lt;noscript&gt;Necesitas JS para ver esto&lt;/noscript&gt;</code></td>
+        <td>Útil para avisos de funcionalidad.</td>
+    </tr>
+    <tr>
+        <td>99</td>
+        <td><code>&lt;template&gt;</code></td>
+        <td>Contenido que no se muestra al cargar.</td>
+        <td><code>&lt;template&gt;&lt;p&gt;Este es un template.&lt;/p&gt;&lt;/template&gt;</code></td>
+        <td>Usado para clonar contenido con JS.</td>
+    </tr>
+    <tr>
+        <td>100</td>
+        <td><code>&lt;slot&gt;</code></td>
+        <td>Espacio en Web Components para contenido.</td>
+        <td><code>&lt;slot name='titulo'&gt;Título por defecto&lt;/slot&gt;</code></td>
+        <td>Permite insertar contenido en un componente.</td>
+    </tr>
+    <tr>
+        <td>101</td>
+        <td><code>&lt;address&gt;</code></td>
+        <td>Información de contacto del autor.</td>
+        <td><code>&lt;address&gt;...&lt;/address&gt;</code></td>
+        <td>Útil para datos de contacto y SEO.</td>
+    </tr>
+    <tr>
+        <td>102</td>
+        <td><code>&lt;dl&gt;</code></td>
+        <td>Lista de descripciones.</td>
+        <td><code>&lt;dl&gt;&lt;dt&gt;...&lt;/dt&gt;&lt;dd&gt;...&lt;/dd&gt;&lt;/dl&gt;</code></td>
+        <td>Utilizada para glosarios o metadatos.</td>
+    </tr>
+    </table>
+</body>
+</html>
