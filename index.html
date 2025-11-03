@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prueba Menú Dinámico - DMStore</title>
+  <style>
+    /* Estilo general */
+    :root{
+      --bg:#0f0f10;
+      --bar:#1f1f22;
+      --gold:#d4a900;
+      --text:#eee;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Poppins, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    /* Barra de navegación */
+    header.navbar {
+      width:100%;
+      background:var(--bar);
+      padding:0 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:64px; /* hace visible la barra como barra completa */
+    }
+
+    .brand {
+      color:var(--gold);
+      font-weight:700;
+      font-size:20px;
+      letter-spacing:0.6px;
+    }
+
+    /* Menu principal (lineal) */
+    ul.menu{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      gap:12px;
+      align-items:center;
+      height:100%;
+    }
+
+    ul.menu > li {
+      position:relative;
+    }
+
+    a.main-link, ul.menu a {
+      color:var(--gold);
+      text-decoration:none;
+      padding:14px 10px;
+      display:inline-block;
+      font-weight:600;
+    }
+
+    a.main-link:hover, ul.menu a:hover {
+      text-decoration:underline;
+      opacity:0.95;
+    }
+
+    .caret{ font-size:12px; margin-left:6px; opacity:0.9; }
+
+    /* Dropdown (animado) */
+    ul.dropdown{
+      list-style:none;
+      padding:8px 0;
+      margin:0;
+      position:absolute;
+      top:64px; /* justo debajo de la barra */
+      left:0;
+      min-width:180px;
+      background:var(--bar);
+      border-radius:6px;
+      box-shadow:0 10px 20px rgba(0,0,0,0.6);
+      overflow:hidden;
+
+      /* animación por max-height + opacity */
+      max-height:0;
+      opacity:0;
+      transition: max-height .28s cubic-bezier(.2,.9,.2,1), opacity .2s ease;
+    }
+
+    /* items dentro del dropdown */
+    ul.dropdown li a{
+      padding:10px 14px;
+      display:block;
+      color:var(--text);
+      font-weight:500;
+    }
+
+    ul.dropdown li a:hover{
+      background:rgba(212,169,0,0.06);
+      color:var(--gold);
+    }
+
+    /* al pasar el mouse: abrir dropdown */
+    li.submenu:hover > ul.dropdown{
+      max-height:400px; /* suficiente para mostrar todos los items */
+      opacity:1;
+    }
+
+    /* Ajuste para que submenus no se corten en pantallas pequeñas */
+    @media (max-width:700px){
+      header.navbar {
+        padding:10px;
+        height:auto;
+        flex-direction:column;
+        gap:8px;
+        align-items:flex-start;
+      }
+      ul.menu {
+        flex-wrap:wrap;
+      }
+      ul.dropdown { position:static; top:auto; left:auto; }
+    }
+
+    /* contenido de prueba para que no todo quede negro */
+    main.content {
+      padding:28px;
+      flex:1;
+    }
+    .card {
+      background:#151515;
+      border:1px solid rgba(255,255,255,0.03);
+      padding:18px;
+      border-radius:8px;
+      max-width:900px;
+      margin:0 auto;
+      color:#ddd;
+    }
+    h1{ color:var(--gold); margin-top:0 }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="brand">DMStore</div>
+
+    <nav>
+      <ul class="menu">
+        <!-- El menú será inyectado aquí por menu.js -->
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content">
+    <div class="card">
+      <h1>Prueba del Menú Dinámico</h1>
+      <p>Este es un contenido de ejemplo para que la página no se vea completamente negra. El menú se carga desde <code>menu.json</code> y usa <code>menu.js</code> para crear la estructura.</p>
+
+      <p>Hover sobre <strong>Categoría</strong> o <strong>Usuario</strong> para ver el submenú con la animación "slide + fade".</p>
+    </div>
+  </main>
+
+  <script src="menu.js"></script>
+
+  <script>
+    /* Función ficticia para la acción "Cambiar Contraseña" usada en el JSON */
+    function abrirModal(){
+      alert("Aquí abrirías el modal para cambiar la contraseña (ejemplo).");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{
+  "menu": [
+    {
+      "titulo": "Inicio",
+      "enlace": "index.php"
+    },
+    {
+      "titulo": "Categoría",
+      "submenu": [
+        {
+          "titulo": "Hombre",
+          "enlace": "catalogo_hombre.php"
+        },
+        {
+          "titulo": "Mujer",
+          "enlace": "mujeres.php"
+        },
+        {
+          "titulo": "Tecnología",
+          "enlace": "tecnologia.php"
+        },
+        {
+          "titulo": "otros",
+          "enlace": "otros.php"
+        }
+      ]
+    },
+    {
+      "titulo": "Productos",
+      "enlace": "productos.php"
+    },
+    {
+      "titulo": "Contactos",
+      "enlace": "contactos.php"
+    },
+    {
+      "titulo": "Carrito",
+      "icono": "🛒",
+      "enlace": "carrito.php"
+    },
+    {
+      "titulo": "Usuario",
+      "icono": "👤",
+      "submenu": [
+        {
+          "titulo": "Bienvenido, Duller"
+        },
+        {
+          "titulo": "Mis pedidos",
+          "enlace": "mis_pedidos.php"
+        },
+        {
+          "titulo": "Cambiar Contraseña",
+          "accion": "abrirModal()"
+        },
+        {
+          "titulo": "Cerrar Sesión",
+          "enlace": "../Controller/controlador_cerrar_session.php"
+        }
+      ]
+    }
+  ]
+}
