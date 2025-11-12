@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Formulario Salud - DMStore Style</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        /* ====== ESTILO BASE DMSTORE ====== */
+        :root {
+            --bg-main: #0b0b0d;
+            --bg-card: #141418;
+            --bg-soft: #1f1f26;
+            --accent: #f1c40f;
+            --accent-soft: #f7d652;
+            --text-main: #f5f5f5;
+            --text-muted: #bbbbbb;
+            --danger: #e74c3c;
+            --border-soft: #2c2c36;
+            --radius-xl: 18px;
+            --shadow-soft: 0 12px 30px rgba(0,0,0,0.45);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #1b1b23 0, #050509 55%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 10px;
+        }
+
+        .dm-container {
+            width: 100%;
+            max-width: 980px;
+            background: rgba(10, 10, 14, 0.96);
+            border-radius: 24px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid #1f1f28;
+            padding: 24px;
+        }
+
+        .dm-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+            gap: 16px;
+        }
+
+        .dm-title-block {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .dm-logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .dm-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .dm-badge {
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent), #ffd34d);
+            color: #000;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ====== PROGRESO ====== */
+        .steps-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .steps-bar {
+            flex: 1;
+            height: 6px;
+            border-radius: 999px;
+            background: #22222b;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .steps-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+            transition: width 0.3s ease;
+        }
+
+        .steps-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .steps-label span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ====== FORM STEPS ====== */
+        .form-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            padding: 18px 20px;
+            border: 1px solid var(--border-soft);
+        }
+
+        .form-step {
+            display: none;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .step-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-title span {
+            display: inline-flex;
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            background: var(--accent);
+            color: #000;
+            font-size: 0.8rem;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .step-description {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0,1fr));
+            gap: 12px 18px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0,1fr));
+            gap: 10px 12px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .form-group label {
+            font-size: 0.83rem;
+            color: var(--text-muted);
+        }
+
+        .form-group label span.req {
+            color: var(--accent);
+        }
+
+        .form-control, .form-select, textarea {
+            background: var(--bg-soft);
+            border: 1px solid #2c2c37;
+            border-radius: 10px;
+            padding: 8px 10px;
+            color: var(--text-main);
+            font-size: 0.88rem;
+            outline: none;
+            transition: border 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .form-control:focus, .form-select:focus, textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px rgba(241,196,15,0.5);
+            background: #252534;
+        }
+
+        textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+
+        /* ====== TABLAS LISTADO ====== */
+        .mini-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.82rem;
+        }
+
+        .mini-table thead {
+            background: #222231;
+        }
+
+        .mini-table th, .mini-table td {
+            border-bottom: 1px solid #2d2d3a;
+            padding: 6px 8px;
+            text-align: left;
+        }
+
+        .mini-table th {
+            color: var(--accent-soft);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 0.78rem;
+        }
+
+        .mini-table tr:nth-child(even) td {
+            background: #171720;
+        }
+
+        .mini-table button {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+        }
+
+        /* ====== BOTONES ====== */
+        .btn-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            gap: 10px;
+        }
+
+        .btn-group-right {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.86rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+            color: #000;
+        }
+
+        .btn-secondary {
+            background: var(--bg-soft);
+            color: var(--text-main);
+            border: 1px solid #32323d;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px dashed #3a3a46;
+        }
+
+        .btn-danger {
+            background: rgba(231, 76, 60, 0.13);
+            color: var(--danger);
+            border: 1px solid rgba(231,76,60,0.3);
+        }
+
+        .btn:hover {
+            filter: brightness(1.05);
+            transform: translateY(-0.5px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            filter: brightness(0.97);
+        }
+
+        /* ====== RESUMEN FINAL ====== */
+        .summary-section {
+            margin-top: 8px;
+            border-radius: 14px;
+            border: 1px solid var(--border-soft);
+            padding: 10px 12px;
+            background: #15151e;
+        }
+
+        .summary-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .summary-text {
+            font-size: 0.83rem;
+            color: var(--text-muted);
+        }
+
+        .summary-json {
+            margin-top: 10px;
+            background: #050508;
+            border-radius: 12px;
+            padding: 10px;
+            font-family: "JetBrains Mono", "Consolas", monospace;
+            font-size: 0.78rem;
+            color: #f8f8f2;
+            max-height: 220px;
+            overflow: auto;
+            border: 1px solid #2b2b36;
+        }
+
+        .chips-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 4px;
+        }
+
+        .chip {
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: #20202b;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .chip span {
+            color: var(--accent-soft);
+            font-weight: 600;
+        }
+
+        .hint-text {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .text-danger {
+            color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+<div class="dm-container">
+    <header class="dm-header">
+        <div class="dm-title-block">
+            <div class="dm-logo">DMStore</div>
+            <div class="dm-subtitle">Formulario de Evaluación de Salud - Multi-Paso</div>
+        </div>
+        <div class="dm-badge">Web Form • JSON</div>
+    </header>
+
+    <div class="steps-progress">
+        <div class="steps-bar">
+            <div class="steps-bar-fill" id="stepsBarFill"></div>
+        </div>
+        <div class="steps-label">
+            Paso <span id="currentStepLabel">1</span>/5
+        </div>
+    </div>
+
+    <div class="form-card">
+        <!-- ====== PASO 1: DATOS PERSONALES ====== -->
+        <div class="form-step active" data-step="1">
+            <div class="step-title">
+                <span>1</span> Datos Personales
+            </div>
+            <p class="step-description">
+                Complete los datos básicos de la persona. <strong>Una persona = 1 registro</strong>.
+            </p>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Nombre <span class="req">*</span></label>
+                    <input type="text" id="perNombre" class="form-control" placeholder="Ej: Juan Alberto" />
+                </div>
+                <div class="form-group">
+                    <label>Apellidos <span class="req">*</span></label>
+                    <input type="text" id="perApellidos" class="form-control" placeholder="Ej: Pérez Romero" />
+                </div>
+                <div class="form-group">
+                    <label>Cédula / ID <span class="req">*</span></label>
+                    <input type="text" id="perCedula" class="form-control" placeholder="Ej: 001-1234567-8" />
+                </div>
+                <div class="form-group">
+                    <label>Fecha de Nacimiento <span class="req">*</span></label>
+                    <input type="date" id="perFechaNac" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="tel" id="perTelefono" class="form-control" placeholder="Ej: 809-555-1234" />
+                </div>
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" id="perEmail" class="form-control" placeholder="Ej: correo@dmstore.com" />
+                </div>
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <input type="text" id="perDireccion" class="form-control" placeholder="Calle, No., Sector, Ciudad" />
+                </div>
+                <div class="form-group">
+                    <label>Estado civil</label>
+                    <select id="perEstadoCivil" class="form-select">
+                        <option value="">Seleccione...</option>
+                        <option value="Soltero(a)">Soltero(a)</option>
+                        <option value="Casado(a)">Casado(a)</option>
+                        <option value="Unión libre">Unión libre</option>
+                        <option value="Divorciado(a)">Divorciado(a)</option>
+                        <option value="Viudo(a)">Viudo(a)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button class="btn btn-ghost" disabled>Anterior</button>
+                <div class="btn-group-right">
+                    <button class="btn btn-primary" id="btnNext1">Siguiente ▸</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== PASO 2: FAMILIARES ====== -->
+        <div class="form-step" data-step="2">
+            <div class="step-title">
+                <span>2</span> Familiares
+            </div>
+            <p class="step-description">
+                Registre los familiares directos. Puede agregar <strong>muchos familiares</strong>.
+            </p>
+
+            <div class="grid-3">
+                <div class="form-group">
+                    <label>Nombre completo</label>
+                    <input type="text" id="famNombre" class="form-control" placeholder="Ej: Dionisio Silverio" />
+                </div>
+                <div class="form-group">
+                    <label>Parentesco</label>
+                    <input type="text" id="famParentesco" class="form-control" placeholder="Ej: Padre, Madre, Hijo..." />
+                </div>
+                <div class="form-group">
+                    <label>Edad</label>
+                    <input type="number" id="famEdad" class="form-control" min="0" max="120" placeholder="Ej: 84" />
+                </div>
+            </div>
+
+            <button class="btn btn-secondary" style="margin-top: 10px;" id="btnAddFamiliar">+ Agregar familiar</button>
+            <p class="hint-text">Ejemplo: Dionisio Silverio / Padre / 84</p>
+
+            <table class="mini-table" id="tablaFamiliares">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Parentesco</th>
+                        <th>Edad</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Se llena por JS -->
+                </tbody>
+            </table>
+
+            <div class="btn-row">
+                <button class="btn btn-secondary" data-prev="1">◂ Anterior</button>
+                <div class="btn-group-right">
+                    <button class="btn btn-primary" id="btnNext2">Siguiente ▸</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== PASO 3: CONDICIONES PRE-EXISTENTES ====== -->
+        <div class="form-step" data-step="3">
+            <div class="step-title">
+                <span>3</span> Condiciones Pre-Existentes de Salud
+            </div>
+            <p class="step-description">
+                Registre las condiciones de salud que ya presenta la persona. Debe existir
+                <strong>al menos 1 condición</strong>.
+            </p>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Enfermedad / Condición <span class="req">*</span></label>
+                    <input type="text" id="condEnfermedad" class="form-control" placeholder="Ej: Hipertensión arterial" />
+                </div>
+                <div class="form-group">
+                    <label>Tiempo con la enfermedad (años) <span class="req">*</span></label>
+                    <input type="number" id="condTiempo" class="form-control" min="0" max="100" placeholder="Ej: 5" />
+                </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 10px;">
+                <label>Detalle / Comentarios</label>
+                <textarea id="condDetalle" class="form-control" placeholder="Ej: Tratado con medicación, control mensual, complicaciones, etc."></textarea>
+            </div>
+
+            <button class="btn btn-secondary" style="margin-top: 10px;" id="btnAddCondicion">+ Agregar condición</button>
+            <p class="hint-text">
+                Ejemplo: Enfermedad → <strong>Hipertensión arterial</strong>, Tiempo → <strong>5 años</strong>.
+            </p>
+
+            <table class="mini-table" id="tablaCondiciones">
+                <thead>
+                    <tr>
+                        <th>Enfermedad</th>
+                        <th>Tiempo (años)</th>
+                        <th>Detalle</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- JS -->
+                </tbody>
+            </table>
+            <p class="hint-text text-danger" id="condWarning" style="display:none;">
+                Debe registrar al menos <strong>una condición de salud</strong> antes de continuar.
+            </p>
+
+            <div class="btn-row">
+                <button class="btn btn-secondary" data-prev="2">◂ Anterior</button>
+                <div class="btn-group-right">
+                    <button class="btn btn-primary" id="btnNext3">Siguiente ▸</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== PASO 4: INTERNAMIENTOS ====== -->
+        <div class="form-step" data-step="4">
+            <div class="step-title">
+                <span>4</span> Internamientos Realizados
+            </div>
+            <p class="step-description">
+                Registre los internamientos que ha tenido la persona (si aplica). Puede agregar <strong>muchos internamientos</strong>.
+            </p>
+
+            <div class="grid-3">
+                <div class="form-group">
+                    <label>Fecha de internamiento</label>
+                    <input type="date" id="intFecha" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Centro médico</label>
+                    <input type="text" id="intCentro" class="form-control" placeholder="Ej: Centro Médico DMStore" />
+                </div>
+                <div class="form-group">
+                    <label>Diagnóstico</label>
+                    <input type="text" id="intDiagnostico" class="form-control" placeholder="Ej: Crisis hipertensiva" />
+                </div>
+            </div>
+
+            <button class="btn btn-secondary" style="margin-top: 10px;" id="btnAddInternamiento">+ Agregar internamiento</button>
+
+            <table class="mini-table" id="tablaInternamientos">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Centro médico</th>
+                        <th>Diagnóstico</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- JS -->
+                </tbody>
+            </table>
+
+            <div class="btn-row">
+                <button class="btn btn-secondary" data-prev="3">◂ Anterior</button>
+                <div class="btn-group-right">
+                    <button class="btn btn-primary" id="btnNext4">Siguiente ▸</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== PASO 5: RESUMEN / GRABAR / EDITAR ====== -->
+        <div class="form-step" data-step="5">
+            <div class="step-title">
+                <span>5</span> Resumen de Datos Registrados
+            </div>
+            <p class="step-description">
+                Revise el resumen general. Puede <strong>editar</strong> cualquier sección regresando al paso
+                correspondiente y luego <strong>grabar</strong>.
+            </p>
+
+            <div class="summary-section" id="summaryPersona">
+                <div class="summary-title">Datos personales</div>
+                <div class="summary-text" id="summaryPersonaText">Sin datos.</div>
+                <div class="chips-inline" id="summaryPersonaChips"></div>
+                <button class="btn btn-ghost" style="margin-top: 6px;" data-edit-step="1">✎ Editar datos personales</button>
+            </div>
+
+            <div class="summary-section" id="summaryFamiliares" style="margin-top: 10px;">
+                <div class="summary-title">Familiares registrados</div>
+                <div class="summary-text" id="summaryFamiliaresText">Sin familiares registrados.</div>
+            </div>
+
+            <div class="summary-section" id="summaryCondiciones" style="margin-top: 10px;">
+                <div class="summary-title">Condiciones pre-existentes de salud</div>
+                <div class="summary-text" id="summaryCondicionesText">Sin condiciones registradas.</div>
+            </div>
+
+            <div class="summary-section" id="summaryInternamientos" style="margin-top: 10px;">
+                <div class="summary-title">Internamientos realizados</div>
+                <div class="summary-text" id="summaryInternamientosText">Sin internamientos registrados.</div>
+            </div>
+
+            <div class="summary-json" id="summaryJson"></div>
+            <p class="hint-text">
+                Esta estructura JSON puede sustituir temporalmente a la base de datos. La información se
+                guarda también en <strong>localStorage</strong> del navegador.
+            </p>
+
+            <div class="btn-row">
+                <button class="btn btn-secondary" data-prev="4">◂ Anterior</button>
+                <div class="btn-group-right">
+                    <button class="btn btn-danger" id="btnLimpiar">Limpiar todo</button>
+                    <button class="btn btn-primary" id="btnGrabar">💾 Grabar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ====== ESTRUCTURA JSON PRINCIPAL ======
+    const formData = {
+        persona: {
+            nombre: "",
+            apellidos: "",
+            cedula: "",
+            fechaNacimiento: "",
+            telefono: "",
+            email: "",
+            direccion: "",
+            estadoCivil: ""
+        },
+        familiares: [],
+        condiciones: [],
+        internamientos: []
+    };
+
+    const TOTAL_STEPS = 5;
+    let currentStep = 1;
+
+    const stepsBarFill = document.getElementById("stepsBarFill");
+    const currentStepLabel = document.getElementById("currentStepLabel");
+
+    function updateProgress() {
+        const percent = (currentStep - 1) / (TOTAL_STEPS - 1) * 100;
+        stepsBarFill.style.width = percent + "%";
+        currentStepLabel.textContent = currentStep;
+    }
+
+    function showStep(step) {
+        currentStep = step;
+        document.querySelectorAll(".form-step").forEach(stepEl => {
+            stepEl.classList.toggle("active", Number(stepEl.dataset.step) === step);
+        });
+        updateProgress();
+        if (step === 5) {
+            actualizarResumen();
+        }
+    }
+
+    // ====== PASO 1: GUARDAR DATOS PERSONALES ======
+    function guardarDatosPersonales() {
+        const nombre = document.getElementById("perNombre").value.trim();
+        const apellidos = document.getElementById("perApellidos").value.trim();
+        const cedula = document.getElementById("perCedula").value.trim();
+        const fechaNac = document.getElementById("perFechaNac").value.trim();
+
+        if (!nombre || !apellidos || !cedula || !fechaNac) {
+            alert("Por favor complete todos los campos obligatorios de datos personales (*).");
+            return false;
+        }
+
+        formData.persona.nombre = nombre;
+        formData.persona.apellidos = apellidos;
+        formData.persona.cedula = cedula;
+        formData.persona.fechaNacimiento = fechaNac;
+        formData.persona.telefono = document.getElementById("perTelefono").value.trim();
+        formData.persona.email = document.getElementById("perEmail").value.trim();
+        formData.persona.direccion = document.getElementById("perDireccion").value.trim();
+        formData.persona.estadoCivil = document.getElementById("perEstadoCivil").value;
+
+        return true;
+    }
+
+    document.getElementById("btnNext1").addEventListener("click", () => {
+        if (guardarDatosPersonales()) {
+            showStep(2);
+        }
+    });
+
+    // ====== PASO 2: FAMILIARES ======
+    const tablaFamiliaresBody = document.querySelector("#tablaFamiliares tbody");
+
+    function renderFamiliares() {
+        tablaFamiliaresBody.innerHTML = "";
+        formData.familiares.forEach((fam, index) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${fam.nombre}</td>
+                <td>${fam.parentesco}</td>
+                <td>${fam.edad}</td>
+                <td><button class="btn btn-danger" data-index="${index}" data-type="familiar">Eliminar</button></td>
+            `;
+            tablaFamiliaresBody.appendChild(tr);
+        });
+    }
+
+    document.getElementById("btnAddFamiliar").addEventListener("click", () => {
+        const nombre = document.getElementById("famNombre").value.trim();
+        const parentesco = document.getElementById("famParentesco").value.trim();
+        const edad = document.getElementById("famEdad").value.trim();
+
+        if (!nombre || !parentesco || !edad) {
+            alert("Complete nombre, parentesco y edad para agregar un familiar.");
+            return;
+        }
+
+        formData.familiares.push({ nombre, parentesco, edad: Number(edad) });
+        renderFamiliares();
+
+        // limpiar
+        document.getElementById("famNombre").value = "";
+        document.getElementById("famParentesco").value = "";
+        document.getElementById("famEdad").value = "";
+    });
+
+    // Siguiente desde paso 2
+    document.getElementById("btnNext2").addEventListener("click", () => {
+        showStep(3);
+    });
+
+    // ====== PASO 3: CONDICIONES ======
+    const tablaCondicionesBody = document.querySelector("#tablaCondiciones tbody");
+    const condWarning = document.getElementById("condWarning");
+
+    function renderCondiciones() {
+        tablaCondicionesBody.innerHTML = "";
+        formData.condiciones.forEach((cond, index) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${cond.enfermedad}</td>
+                <td>${cond.tiempoAnios}</td>
+                <td>${cond.detalle || "-"}</td>
+                <td><button class="btn btn-danger" data-index="${index}" data-type="condicion">Eliminar</button></td>
+            `;
+            tablaCondicionesBody.appendChild(tr);
+        });
+        condWarning.style.display = formData.condiciones.length === 0 ? "block" : "none";
+    }
+
+    document.getElementById("btnAddCondicion").addEventListener("click", () => {
+        const enfermedad = document.getElementById("condEnfermedad").value.trim();
+        const tiempo = document.getElementById("condTiempo").value.trim();
+        const detalle = document.getElementById("condDetalle").value.trim();
+
+        if (!enfermedad || !tiempo) {
+            alert("Enfermedad y tiempo con la enfermedad son obligatorios.");
+            return;
+        }
+
+        formData.condiciones.push({
+            enfermedad,
+            tiempoAnios: Number(tiempo),
+            detalle
+        });
+        renderCondiciones();
+
+        document.getElementById("condEnfermedad").value = "";
+        document.getElementById("condTiempo").value = "";
+        document.getElementById("condDetalle").value = "";
+    });
+
+    document.getElementById("btnNext3").addEventListener("click", () => {
+        if (formData.condiciones.length === 0) {
+            alert("Debe agregar al menos una condición de salud antes de continuar.");
+            condWarning.style.display = "block";
+            return;
+        }
+        showStep(4);
+    });
+
+    // ====== PASO 4: INTERNAMIENTOS ======
+    const tablaInternamientosBody = document.querySelector("#tablaInternamientos tbody");
+
+    function renderInternamientos() {
+        tablaInternamientosBody.innerHTML = "";
+        formData.internamientos.forEach((int, index) => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${int.fecha || "-"}</td>
+                <td>${int.centro || "-"}</td>
+                <td>${int.diagnostico || "-"}</td>
+                <td><button class="btn btn-danger" data-index="${index}" data-type="internamiento">Eliminar</button></td>
+            `;
+            tablaInternamientosBody.appendChild(tr);
+        });
+    }
+
+    document.getElementById("btnAddInternamiento").addEventListener("click", () => {
+        const fecha = document.getElementById("intFecha").value.trim();
+        const centro = document.getElementById("intCentro").value.trim();
+        const diagnostico = document.getElementById("intDiagnostico").value.trim();
+
+        if (!fecha && !centro && !diagnostico) {
+            alert("Complete al menos un dato del internamiento antes de agregarlo.");
+            return;
+        }
+
+        formData.internamientos.push({
+            fecha,
+            centro,
+            diagnostico
+        });
+        renderInternamientos();
+
+        document.getElementById("intFecha").value = "";
+        document.getElementById("intCentro").value = "";
+        document.getElementById("intDiagnostico").value = "";
+    });
+
+    document.getElementById("btnNext4").addEventListener("click", () => {
+        showStep(5);
+    });
+
+    // ====== ELIMINAR REGISTROS DE TABLAS (delegado) ======
+    document.addEventListener("click", (e) => {
+        if (e.target.matches("button[data-type]")) {
+            const type = e.target.getAttribute("data-type");
+            const index = Number(e.target.getAttribute("data-index"));
+            if (type === "familiar") {
+                formData.familiares.splice(index, 1);
+                renderFamiliares();
+            } else if (type === "condicion") {
+                formData.condiciones.splice(index, 1);
+                renderCondiciones();
+            } else if (type === "internamiento") {
+                formData.internamientos.splice(index, 1);
+                renderInternamientos();
+            }
+        }
+    });
+
+    // ====== BOTONES "Anterior" genéricos ======
+    document.querySelectorAll("button[data-prev]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const prevStep = Number(btn.getAttribute("data-prev"));
+            showStep(prevStep);
+        });
+    });
+
+    // ====== EDITAR DESDE RESUMEN ======
+    document.querySelectorAll("button[data-edit-step]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const step = Number(btn.getAttribute("data-edit-step"));
+            showStep(step);
+        });
+    });
+
+    // ====== RESUMEN (PASO 5) ======
+    function actualizarResumen() {
+        // Persona
+        const p = formData.persona;
+        const personaText = document.getElementById("summaryPersonaText");
+        const personaChips = document.getElementById("summaryPersonaChips");
+        personaChips.innerHTML = "";
+
+        if (p.nombre) {
+            personaText.textContent = `${p.nombre} ${p.apellidos} (Cédula: ${p.cedula})`;
+            const datos = [
+                { label: "Fecha Nac.", value: p.fechaNacimiento },
+                { label: "Tel.", value: p.telefono },
+                { label: "Email", value: p.email },
+                { label: "Estado civil", value: p.estadoCivil }
+            ];
+            datos.forEach(d => {
+                if (d.value) {
+                    const chip = document.createElement("div");
+                    chip.className = "chip";
+                    chip.innerHTML = `<span>${d.label}:</span> ${d.value}`;
+                    personaChips.appendChild(chip);
+                }
+            });
+        } else {
+            personaText.textContent = "Sin datos.";
+        }
+
+        // Familiares
+        const famText = document.getElementById("summaryFamiliaresText");
+        if (formData.familiares.length === 0) {
+            famText.textContent = "Sin familiares registrados.";
+        } else {
+            famText.innerHTML = formData.familiares
+                .map(f => `${f.nombre} - ${f.parentesco} (${f.edad} años)`)
+                .join("<br>");
+        }
+
+        // Condiciones
+        const condText = document.getElementById("summaryCondicionesText");
+        if (formData.condiciones.length === 0) {
+            condText.textContent = "Sin condiciones registradas.";
+        } else {
+            condText.innerHTML = formData.condiciones
+                .map(c => {
+                    let detalle = c.detalle ? ` - Detalle: ${c.detalle}` : "";
+                    return `${c.enfermedad} (${c.tiempoAnios} años)${detalle}`;
+                })
+                .join("<br>");
+        }
+
+        // Internamientos
+        const intText = document.getElementById("summaryInternamientosText");
+        if (formData.internamientos.length === 0) {
+            intText.textContent = "Sin internamientos registrados.";
+        } else {
+            intText.innerHTML = formData.internamientos
+                .map(i => `${i.fecha || "Fecha no especificada"} - ${i.centro || "Centro no especificado"} - ${i.diagnostico || "Diagnóstico no especificado"}`)
+                .join("<br>");
+        }
+
+        // JSON estructurado
+        const jsonDiv = document.getElementById("summaryJson");
+        jsonDiv.textContent = JSON.stringify(formData, null, 2);
+    }
+
+    // ====== GRABAR (localStorage) ======
+    document.getElementById("btnGrabar").addEventListener("click", () => {
+        try {
+            localStorage.setItem("dmstore_form_salud", JSON.stringify(formData));
+            alert("Datos grabados correctamente en localStorage (dmstore_form_salud).");
+        } catch (err) {
+            console.error(err);
+            alert("Ocurrió un error al grabar los datos.");
+        }
+    });
+
+    // ====== LIMPIAR TODO ======
+    document.getElementById("btnLimpiar").addEventListener("click", () => {
+        if (!confirm("¿Seguro que desea limpiar todos los datos del formulario?")) return;
+
+        formData.persona = {
+            nombre: "",
+            apellidos: "",
+            cedula: "",
+            fechaNacimiento: "",
+            telefono: "",
+            email: "",
+            direccion: "",
+            estadoCivil: ""
+        };
+        formData.familiares = [];
+        formData.condiciones = [];
+        formData.internamientos = [];
+
+        document.querySelectorAll("input, textarea, select").forEach(el => {
+            if (el.type === "date" || el.type === "text" || el.type === "email" || el.type === "tel" || el.type === "number") {
+                el.value = "";
+            } else if (el.tagName === "TEXTAREA") {
+                el.value = "";
+            } else if (el.tagName === "SELECT") {
+                el.value = "";
+            }
+        });
+
+        renderFamiliares();
+        renderCondiciones();
+        renderInternamientos();
+        actualizarResumen();
+        showStep(1);
+        localStorage.removeItem("dmstore_form_salud");
+    });
+
+    // ====== CARGAR DESDE localStorage SI EXISTE ======
+    (function cargarDesdeLocalStorage() {
+        try {
+            const data = localStorage.getItem("dmstore_form_salud");
+            if (!data) return;
+            const parsed = JSON.parse(data);
+            Object.assign(formData.persona, parsed.persona || {});
+            formData.familiares = parsed.familiares || [];
+            formData.condiciones = parsed.condiciones || [];
+            formData.internamientos = parsed.internamientos || [];
+
+            // Volcar datos persona al formulario
+            document.getElementById("perNombre").value = formData.persona.nombre || "";
+            document.getElementById("perApellidos").value = formData.persona.apellidos || "";
+            document.getElementById("perCedula").value = formData.persona.cedula || "";
+            document.getElementById("perFechaNac").value = formData.persona.fechaNacimiento || "";
+            document.getElementById("perTelefono").value = formData.persona.telefono || "";
+            document.getElementById("perEmail").value = formData.persona.email || "";
+            document.getElementById("perDireccion").value = formData.persona.direccion || "";
+            document.getElementById("perEstadoCivil").value = formData.persona.estadoCivil || "";
+
+            renderFamiliares();
+            renderCondiciones();
+            renderInternamientos();
+        } catch (err) {
+            console.error("Error al cargar desde localStorage:", err);
+        }
+    })();
+
+    updateProgress();
+</script>
+</body>
+</html>
