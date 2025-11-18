@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulario de Contacto - QR DMStore</title>
+
+  <!-- Fuente similar a la que usas en DMStore -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Librería para generar el código QR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #111;
+      color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: #181818;
+      border-radius: 18px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+      padding: 30px;
+      border: 1px solid #2a2a2a;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .header {
+      grid-column: 1 / -1;
+      margin-bottom: 10px;
+    }
+
+    .logo-text {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #ffd166;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #c9c9c9;
+      margin-top: 4px;
+    }
+
+    .form-section {
+      border-right: 1px solid #2a2a2a;
+      padding-right: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .form-section {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid #2a2a2a;
+        padding-bottom: 20px;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #ffd166;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #111;
+      color: #f5f5f5;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #ffd166;
+      box-shadow: 0 0 0 1px #ffd16655;
+      background: #151515;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #ffd166, #ffb703);
+      color: #111;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+      filter: brightness(1.02);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    /* 🔽 BOTÓN DE DESCARGA 🔽 */
+    .btn-download {
+      width: 100%;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: #ffd166;
+      color: #111;
+      margin-top: 10px;
+      display: none; /* oculto hasta generar el QR */
+    }
+
+    .helper-text {
+      font-size: 11px;
+      color: #aaaaaa;
+      margin-top: 4px;
+    }
+
+    .qr-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .qr-box {
+      width: 260px;
+      height: 260px;
+      border-radius: 18px;
+      background: #101010;
+      border: 1px dashed #ffd16655;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    #qrcode canvas {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .qr-placeholder {
+      font-size: 13px;
+      color: #777;
+    }
+
+    .qr-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffd166;
+    }
+
+    .status {
+      font-size: 12px;
+      color: #80ffb3;
+      min-height: 18px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="logo-text">DMStore</div>
+      <p class="subtitle">Formulario de contacto · Generador de Código QR (vCard)</p>
+    </div>
+
+    <!-- FORMULARIO -->
+    <section class="form-section">
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej: Duller Alberto Matos Tineo" />
+        </div>
+
+        <div class="form-group">
+          <label for="telefono">Número de contacto</label>
+          <input type="tel" id="telefono" name="telefono" required placeholder="Ej: +1 809-555-1234" />
+          <p class="helper-text">Incluye el código de país para mejor compatibilidad.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <textarea id="direccion" name="direccion" placeholder="Ej: Calle X #00, Sector, Ciudad, País"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" required placeholder="Ej: correo@ejemplo.com" />
+        </div>
+
+        <button type="submit" class="btn-submit">
+          Enviar y generar QR
+        </button>
+
+        <!-- 🔽 BOTÓN DE DESCARGA 🔽 -->
+        <button id="btnDescargar" type="button" class="btn-download">
+          Descargar QR
+        </button>
+
+        <p id="status" class="status"></p>
+      </form>
+    </section>
+
+    <!-- SECCIÓN QR -->
+    <section class="qr-section">
+      <h3 class="qr-title">Código QR del contacto</h3>
+      <div class="qr-box">
+        <div id="qrcode">
+          <span class="qr-placeholder">
+            Completa el formulario y presiona<br> “Enviar y generar QR”.
+          </span>
+        </div>
+      </div>
+      <p class="helper-text">
+        Escanea este código con la cámara de tu celular/smartphone.<br>
+        Debe mostrarte la opción para crear/guardar el contacto.
+      </p>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById("contactForm");
+    const statusText = document.getElementById("status");
+    const qrContainer = document.getElementById("qrcode");
+    const btnDescargar = document.getElementById("btnDescargar");
+    let qrInstance = null;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const telefono = document.getElementById("telefono").value.trim();
+      const direccion = document.getElementById("direccion").value.trim();
+      const correo = document.getElementById("correo").value.trim();
+
+      if (!nombre || !telefono || !correo) {
+        statusText.textContent = "Por favor completa al menos nombre, teléfono y correo.";
+        statusText.style.color = "#ff8a80";
+        return;
+      }
+
+      const vcard =
+        "BEGIN:VCARD\n" +
+        "VERSION:3.0\n" +
+        "FN:" + nombre + "\n" +
+        "N:" + nombre + ";;;;\n" +
+        "TEL;TYPE=CELL:" + telefono + "\n" +
+        (correo ? "EMAIL;TYPE=INTERNET:" + correo + "\n" : "") +
+        (direccion ? "ADR;TYPE=HOME:;;" + direccion + ";;;;\n" : "") +
+        "END:VCARD";
+
+      qrContainer.innerHTML = "";
+
+      qrInstance = new QRCode(qrContainer, {
+        text: vcard,
+        width: 250,
+        height: 250,
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      statusText.textContent = "Código QR generado correctamente.";
+      statusText.style.color = "#80ffb3";
+
+      btnDescargar.style.display = "block";
+    });
+
+    // 🔽 FUNCIÓN PARA DESCARGAR EL QR EN PNG 🔽
+    btnDescargar.addEventListener("click", function () {
+      const canvas = qrContainer.querySelector("canvas");
+      if (!canvas) return;
+
+      const img = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = img;
+      link.download = "contacto_dmstore_qr.png";
+      link.click();
+    });
+  </script>
+
+</body>
+</html>
