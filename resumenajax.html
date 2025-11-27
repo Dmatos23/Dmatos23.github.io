@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resumen de AJAX</title>
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #0d0d0f; /* Fondo oscuro */
+      color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .logo-text {
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      color: #f1c40f;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .title {
+      font-size: 2rem;
+      margin-top: 8px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      margin-top: 4px;
+      color: #bbbbbb;
+    }
+
+    .content-card {
+      background: radial-gradient(circle at top left, #1c1c24, #111118);
+      border-radius: 18px;
+      padding: 24px 26px;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(241, 196, 15, 0.35);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      background: rgba(241, 196, 15, 0.08);
+      border-radius: 999px;
+      padding: 4px 12px;
+      color: #f1c40f;
+      border: 1px solid rgba(241, 196, 15, 0.4);
+      margin-bottom: 16px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #f1c40f;
+      box-shadow: 0 0 10px rgba(241, 196, 15, 0.9);
+    }
+
+    h2.section-title {
+      font-size: 1.3rem;
+      margin: 16px 0 8px;
+      color: #fefefe;
+      border-left: 4px solid #f1c40f;
+      padding-left: 10px;
+    }
+
+    p {
+      margin-bottom: 8px;
+      line-height: 1.6;
+      font-size: 0.95rem;
+      color: #e0e0e0;
+    }
+
+    ul {
+      list-style: none;
+      margin: 8px 0 8px 0;
+      padding-left: 0;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 4px;
+      font-size: 0.93rem;
+      color: #d7d7d7;
+    }
+
+    ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: #f1c40f;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+      gap: 20px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .card-block {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 14px;
+      padding: 16px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .card-block h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: #ffd95e;
+    }
+
+    .tag-pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      margin-right: 6px;
+      margin-top: 4px;
+      color: #f1c40f;
+    }
+
+    .code-block {
+      margin-top: 10px;
+      background: #050509;
+      border-radius: 10px;
+      padding: 12px;
+      overflow-x: auto;
+      border: 1px solid rgba(241, 196, 15, 0.35);
+    }
+
+    .code-block pre {
+      font-family: "Fira Code", "Consolas", monospace;
+      font-size: 0.85rem;
+      white-space: pre;
+      color: #f8f8f2;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: #aaaaaa;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      padding-top: 10px;
+    }
+
+    /* Pequeño bloque de demo visual */
+    .demo-box {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(241, 196, 15, 0.25);
+      font-size: 0.9rem;
+    }
+
+    .demo-button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: #f1c40f;
+      color: #111;
+    }
+
+    .demo-button:hover {
+      filter: brightness(0.9);
+    }
+
+    .demo-result {
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 8px;
+      background: #111118;
+      min-height: 40px;
+      font-size: 0.9rem;
+      color: #eaeaea;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    @media (max-width: 768px) {
+      .title {
+        font-size: 1.6rem;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="header">
+      <div class="logo-text">· Notas Técnicas</div>
+      <h1 class="title">Resumen de AJAX</h1>
+      <p class="subtitle">Concepto, usos y ejemplo sencillo de cómo funciona en una página web.</p>
+    </header>
+
+    <main class="content-card">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Introducción rápida a AJAX
+      </div>
+
+      <h2 class="section-title">¿Qué es AJAX?</h2>
+      <p>
+        AJAX (Asynchronous JavaScript And XML) es una técnica que permite a una página web 
+        comunicarse con el servidor de forma asíncrona, es decir, sin tener que recargar 
+        toda la página completa.
+      </p>
+      <p>
+        Aunque originalmente se basaba mucho en XML, hoy en día la mayoría de las aplicaciones 
+        usan AJAX para enviar y recibir datos en formato JSON.
+      </p>
+
+      <div class="grid">
+        <!-- Columna izquierda -->
+        <div class="card-block">
+          <h3>¿Qué permite hacer AJAX?</h3>
+          <ul>
+            <li>Actualizar partes de una página sin recargarla completa.</li>
+            <li>Enviar datos de formularios al servidor en segundo plano.</li>
+            <li>Cargar información dinámica (productos, comentarios, notificaciones, etc.).</li>
+            <li>Mejorar la experiencia de usuario (interfaz más rápida y fluida).</li>
+          </ul>
+
+          <h3 style="margin-top: 12px;">Usos en un sitio como DMStore</h3>
+          <ul>
+            <li>Cargar más productos al hacer scroll (catálogo infinito).</li>
+            <li>Actualizar el carrito de compras sin recargar la página.</li>
+            <li>Buscar productos en tiempo real mientras el usuario escribe.</li>
+            <li>Mostrar detalles de un producto en un modal usando datos del servidor.</li>
+          </ul>
+        </div>
+
+        <!-- Columna derecha -->
+        <div class="card-block">
+          <h3>Ventajas y desventajas</h3>
+          <ul>
+            <li><strong>Ventajas:</strong> mejora UX, menos recargas, respuestas rápidas, tráfico optimizado.</li>
+            <li><strong>Desventajas:</strong> más complejidad en JavaScript, cuidado con manejo de errores y seguridad.</li>
+          </ul>
+
+          <div style="margin-top: 8px;">
+            <span class="tag-pill">#ajax</span>
+            <span class="tag-pill">#frontend</span>
+            <span class="tag-pill">#dmstore</span>
+          </div>
+        </div>
+      </div>
+
+      <
