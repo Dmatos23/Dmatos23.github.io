@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Resumen Spring Framework - DMStore Style</title>
+
+  <!-- Fuente similar a la de DMStore -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #0d0d0f;
+      color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .header {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .logo-text {
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      color: #f1c40f;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .title {
+      font-size: 2rem;
+      margin-top: 8px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      margin-top: 4px;
+      color: #cccccc;
+    }
+
+    .content-card {
+      background: radial-gradient(circle at top left, #1c1c24, #111118);
+      border-radius: 18px;
+      padding: 24px 26px;
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(241, 196, 15, 0.35);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      background: rgba(241, 196, 15, 0.1);
+      border-radius: 999px;
+      padding: 4px 12px;
+      color: #f1c40f;
+      border: 1px solid rgba(241, 196, 15, 0.5);
+      margin-bottom: 16px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #f1c40f;
+      box-shadow: 0 0 8px rgba(241, 196, 15, 0.9);
+    }
+
+    h2.section-title {
+      font-size: 1.3rem;
+      margin: 18px 0 8px;
+      border-left: 4px solid #f1c40f;
+      padding-left: 12px;
+      color: #fff;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 0.95rem;
+      color: #e0e0e0;
+      margin-bottom: 8px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    ul li {
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 5px;
+      color: #d7d7d7;
+      font-size: 0.93rem;
+    }
+
+    ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 7px;
+      height: 7px;
+      border-radius: 2px;
+      background: #f1c40f;
+    }
+
+    .code-block {
+      margin-top: 14px;
+      background: #050509;
+      border-radius: 10px;
+      padding: 12px;
+      overflow-x: auto;
+      border: 1px solid rgba(241, 196, 15, 0.4);
+    }
+
+    pre {
+      font-family: "Consolas", monospace;
+      font-size: 0.85rem;
+      color: #f8f8f2;
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      padding-top: 10px;
+      font-size: 0.8rem;
+      color: #aaa;
+      border-top: 1px dashed rgba(255,255,255,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .title { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <header class="header">
+      <div class="logo-text">DMStore · Notas Técnicas</div>
+      <h1 class="title">Resumen Spring Framework</h1>
+      <p class="subtitle">Funcionalidades principales y ejemplo básico</p>
+    </header>
+
+    <main class="content-card">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Framework Backend para Java
+      </div>
+
+      <h2 class="section-title">¿Qué es Spring Framework?</h2>
+      <p>
+        Spring Framework es un framework de **código abierto para Java**, diseñado para el desarrollo de 
+        aplicaciones empresariales, APIs, microservicios y sistemas web robustos.  
+        Su objetivo principal es facilitar la creación de software, reduciendo la complejidad del código mediante
+        una arquitectura modular y flexible.
+      </p>
+
+      <h2 class="section-title">Funcionalidades principales</h2>
+      <ul>
+        <li><strong>Inyección de dependencias (DI):</strong> Reduce el acoplamiento entre clases.</li>
+        <li><strong>Spring MVC:</strong> Permite desarrollo de aplicaciones web con el patrón Modelo–Vista–Controlador.</li>
+        <li><strong>Spring Boot:</strong> Agiliza la creación de aplicaciones ya configuradas y listas para ejecutar.</li>
+        <li><strong>Spring Data:</strong> Facilita el acceso a bases de datos (MySQL, PostgreSQL, MongoDB, etc.).</li>
+        <li><strong>Spring Security:</strong> Implementa autenticación y autorización (MFA, roles, login seguro, JWT, OAuth).</li>
+        <li><strong>Soporte para microservicios:</strong> Ideal para arquitecturas distribuidas.</li>
+        <li><strong>Gestión de transacciones:</strong> Control automático de procesos en bases de datos.</li>
+        <li><strong>Spring IoC Container:</strong> Administra los ciclos de vida de objetos.</li>
+      </ul>
+
+      <h2 class="section-title">Ventajas</h2>
+      <ul>
+        <li>Estructura modular (puedes usar solo lo que necesites).</li>
+        <li>Ecosistema amplio y mantenido.</li>
+        <li>Alta escalabilidad para sistemas grandes.</li>
+        <li>Gran comunidad y documentación.</li>
+      </ul>
+
+      <h2 class="section-title">Ejemplo básico (Spring Boot + MVC)</h2>
+      <p>
+        Este ejemplo muestra un API simple que devuelve un producto usando Spring MVC dentro de Spring Boot:
+      </p>
+
+      <div class="code-block">
+<pre>// 1. Controlador: ProductoController.java
+@RestController
+@RequestMapping("/producto")
+public class ProductoController {
+
+  @GetMapping
+  public Map&lt;String, Object&gt; obtenerProducto() {
+    Map&lt;String, Object&gt; producto = new HashMap&lt;&gt;();
+    producto.put("id", "T010");
+    producto.put("nombre", "SmartWatch DM Pro");
+    producto.put("precio", 5600.00);
+    producto.put("stock", 12);
+    return producto; // JSON response automática (AJAX friendly)
+  }
+}</pre>
+      </div>
+
+      <p style="margin-top: 12px;">
+        ✔ `@RestController` indica que es un endpoint API  
+        ✔ Spring convierte automáticamente la respuesta a **JSON**  
+        ✔ Se puede consumir con **AJAX / Fetch desde el frontend**
+      </p>
+
+      <h2 class="section-title">Ejemplo consumo AJAX (Frontend)</h2>
+      <div class="code-block">
+<pre>
+// 2. Llamada desde el navegador con Fetch (AJAX):
+fetch('/producto')
+  .then(res => res.json())
+  .then(data => console.log(data));
+</pre>
+      </div>
+
+      <div class="footer-note">
+        💡 Spring es ideal para tiendas tecnológicas como DMStore cuando:
+        <br>• Necesitas APIs rápidas
+        <br>• Seguridad robusta
+        <br>• Escalabilidad
+        <br>• Arquitectura limpia (MVC / Microservicios)
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>
