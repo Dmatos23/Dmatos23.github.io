@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Servicio Web - Validar Cédula (Módulo 10)</title>
+
+  <!-- Fuente tipo DMStore -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #0b0b0b;
+      color: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 800px;
+      background: linear-gradient(135deg, #111, #1c1c1c);
+      border-radius: 20px;
+      padding: 24px 22px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 10px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #ffd700;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: #bbbbbb;
+    }
+
+    .tag-pill {
+      font-size: 0.75rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 215, 0, 0.08);
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #ffd700;
+      white-space: nowrap;
+    }
+
+    .main {
+      margin-top: 5px;
+    }
+
+    h2 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    p.description {
+      font-size: 0.85rem;
+      color: #cfcfcf;
+      margin-bottom: 16px;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 14px;
+    }
+
+    .card {
+      background: radial-gradient(circle at top left, rgba(255, 215, 0, 0.05), #0f0f0f);
+      border-radius: 16px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 14px 12px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    label {
+      font-size: 0.8rem;
+      color: #e2e2e2;
+    }
+
+    .input-wrapper {
+      display: flex;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 9px 11px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #111;
+      color: #f5f5f5;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s, transform 0.1s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #ffd700;
+      box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.35);
+      transform: translateY(-1px);
+    }
+
+    button {
+      padding: 9px 14px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #ffd700, #ffb300);
+      color: #111;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.1s ease, box-shadow 0.2s ease, filter 0.2s;
+      white-space: nowrap;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.25);
+      filter: brightness(1.03);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: none;
+      filter: brightness(0.97);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.75rem;
+      padding: 5px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .status-valid {
+      background: rgba(0, 200, 83, 0.1);
+      border: 1px solid rgba(0, 200, 83, 0.5);
+      color: #4ade80;
+    }
+
+    .status-invalid {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      color: #fca5a5;
+    }
+
+    .status-neutral {
+      background: rgba(148, 163, 184, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: #e5e7eb;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: currentColor;
+    }
+
+    .result-text {
+      font-size: 0.85rem;
+      color: #e5e7eb;
+      margin-bottom: 6px;
+    }
+
+    .small-hint {
+      font-size: 0.7rem;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    pre {
+      background: #050505;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 0.75rem;
+      overflow-x: auto;
+      border: 1px solid #27272a;
+      color: #e5e7eb;
+    }
+
+    .badge-example {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #e5e7eb;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    ul {
+      padding-left: 18px;
+      font-size: 0.78rem;
+      color: #d1d5db;
+    }
+
+    ul li {
+      margin-bottom: 3px;
+    }
+
+    @media (max-width: 720px) {
+      .columns {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="brand">
+        <div class="brand-title">DMStore Validator</div>
+        <div class="brand-subtitle">Servicio Web de Validación de Cédula (Módulo 10)</div>
+      </div>
+      <div class="tag-pill">HTML + JSON</div>
+    </div>
+
+    <div class="main">
+      <h2>Validación de Cédula de Identidad y Electoral</h2>
+      <p class="description">
+        Este ejemplo simula un <strong>Servicio Web</strong> que recibe una cédula en formato JSON,
+        aplica el algoritmo de <strong>Módulo 10</strong> y devuelve una respuesta JSON indicando si es válida.
+      </p>
+
+      <div class="columns">
+        <!-- Columna izquierda: Formulario y resultado legible -->
+        <div class="card">
+          <div id="statusBadge" class="status-badge status-neutral">
+            <span class="status-dot"></span>
+            <span>Esperando validación...</span>
+          </div>
+
+          <div class="form-group">
+            <label for="cedula">Cédula (puede incluir guiones):</label>
+            <div class="input-wrapper">
+              <input type="text" id="cedula" placeholder="Ej: 001-1234567-8" />
+              <button id="btn-validar">Validar</button>
+            </div>
+            <div class="small-hint">
+              Se espera una cédula de 11 dígitos. Ejemplo de flujo tipo servicio web usando JSON.
+            </div>
+          </div>
+
+          <div class="result-text" id="resultadoLegible">
+            Ingrese una cédula y presione <strong>Validar</strong>.
+          </div>
+        </div>
+
+        <!-- Columna derecha: JSON de request y response -->
+        <div class="card">
+          <div class="badge-example">Estructura JSON del Servicio Web</div>
+          <ul>
+            <li><strong>Request:</strong> <code>{ "cedula": "00112345678" }</code></li>
+            <li><strong>Response:</strong> <code>{ "ok": true, "cedula": "...", "valida": true/false, "mensaje": "..." }</code></li>
+          </ul>
+
+          <div class="small-hint">Última solicitud enviada al "servicio":</div>
+          <pre id="jsonRequest">
+{ }
+          </pre>
+
+          <div class="small-hint">Última respuesta recibida del "servicio":</div>
+          <pre id="jsonResponse">
+{ }
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===============================
+    //  FUNCIÓN: Validar cédula módulo 10
+    // ===============================
+    function validarCedulaModulo10(cedula) {
+      // Eliminar todo lo que no sea dígito
+      const limpia = cedula.replace(/\D/g, "");
+
+      // Debe tener exactamente 11 dígitos
+      if (limpia.length !== 11) {
+        return { valida: false, normalizada: limpia, motivo: "La cédula debe tener 11 dígitos." };
+      }
+
+      const digitos = limpia.split("").map(Number);
+
+      // Tomamos el último dígito como verificador
+      const verificador = digitos.pop(); // último dígito
+      let suma = 0;
+
+      // Multiplicadores alternados 1, 2, 1, 2...
+      for (let i = 0; i < digitos.length; i++) {
+        const multiplicador = (i % 2 === 0) ? 1 : 2;
+        let producto = digitos[i] * multiplicador;
+
+        // Si el producto es >= 10, se suman sus dígitos (ej: 16 -> 1 + 6 = 7)
+        if (producto >= 10) {
+          const prodStr = producto.toString();
+          producto = Number(prodStr[0]) + Number(prodStr[1]);
+        }
+
+        suma += producto;
+      }
+
+      const resto = suma % 10;
+      const digitoCalculado = (resto === 0) ? 0 : (10 - resto);
+
+      const esValida = (digitoCalculado === verificador);
+
+      return {
+        valida: esValida,
+        normalizada: limpia,
+        motivo: esValida
+          ? "La cédula cumple con la regla de Módulo 10."
+          : "El dígito verificador no coincide con el calculado."
+      };
+    }
+
+    // ========================================
+    // "SERVICIO WEB" SIMULADO: recibe JSON y devuelve JSON
+    // ========================================
+    function servicioWebValidarCedula(payloadJson) {
+      // payloadJson = { cedula: "..." }
+      const resultado = validarCedulaModulo10(payloadJson.cedula);
+
+      // Respuesta tipo JSON del servicio
+      return {
+        ok: true,
+        cedula: resultado.normalizada,
+        valida: resultado.valida,
+        mensaje: resultado.valida
+          ? "La cédula es válida."
+          : "La cédula no es válida.",
+        detalle: resultado.motivo
+      };
+    }
+
+    // ========================================
+    // MANEJO DE UI
+    // ========================================
+    const btnValidar = document.getElementById("btn-validar");
+    const inputCedula = document.getElementById("cedula");
+    const jsonRequest = document.getElementById("jsonRequest");
+    const jsonResponse = document.getElementById("jsonResponse");
+    const statusBadge = document.getElementById("statusBadge");
+    const resultadoLegible = document.getElementById("resultadoLegible");
+
+    function setBadgeNeutral() {
+      statusBadge.className = "status-badge status-neutral";
+      statusBadge.innerHTML = '<span class="status-dot"></span><span>Esperando validación...</span>';
+    }
+
+    function setBadgeValida() {
+      statusBadge.className = "status-badge status-valid";
+      statusBadge.innerHTML = '<span class="status-dot"></span><span>Cédula válida</span>';
+    }
+
+    function setBadgeInvalida() {
+      statusBadge.className = "status-badge status-invalid";
+      statusBadge.innerHTML = '<span class="status-dot"></span><span>Cédula no válida</span>';
+    }
+
+    btnValidar.addEventListener("click", () => {
+      const cedulaUsuario = inputCedula.value.trim();
+
+      if (!cedulaUsuario) {
+        setBadgeNeutral();
+        resultadoLegible.innerHTML = "Por favor, ingrese una cédula para validar.";
+        jsonRequest.textContent = "{ }";
+        jsonResponse.textContent = "{ }";
+        return;
+      }
+
+      // Construimos el JSON de Request (como si fuéramos a un servicio real)
+      const requestPayload = {
+        cedula: cedulaUsuario
+      };
+
+      // Mostramos el request
+      jsonRequest.textContent = JSON.stringify(requestPayload, null, 2);
+
+      // Llamamos al "Servicio Web" local (función JS)
+      const responsePayload = servicioWebValidarCedula(requestPayload);
+
+      // Mostramos el response
+      jsonResponse.textContent = JSON.stringify(responsePayload, null, 2);
+
+      // Actualizamos el estado visual
+      if (responsePayload.valida) {
+        setBadgeValida();
+        resultadoLegible.innerHTML =
+          `<strong>${responsePayload.mensaje}</strong><br/>` +
+          `Cédula normalizada: <code>${responsePayload.cedula}</code><br/>` +
+          `<span style="font-size:0.8rem;color:#9ca3af;">${responsePayload.detalle}</span>`;
+      } else {
+        setBadgeInvalida();
+        resultadoLegible.innerHTML =
+          `<strong>${responsePayload.mensaje}</strong><br/>` +
+          `Cédula normalizada: <code>${responsePayload.cedula}</code><br/>` +
+          `<span style="font-size:0.8rem;color:#9ca3af;">${responsePayload.detalle}</span>`;
+      }
+    });
+
+    // Estado inicial
+    setBadgeNeutral();
+  </script>
+</body>
+</html>
